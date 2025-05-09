@@ -1,0 +1,31 @@
+# replica set definition file
+apiVersion: apps/v1           # diff with the replication controller
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    name: myapp
+    type: frontend
+spec:
+  # major difference with the replication controller
+  selector:
+    matchLabels:
+      type: frontend
+  # template for pod replicas 
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: frontend
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+
+  # number replicas we need
+  replicas: 3
+
+# run 
+# kubectl create -f replicaset-definition.yaml
+# kubectl get replicaset

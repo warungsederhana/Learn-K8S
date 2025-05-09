@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    type: creating-pod-tutorial 
+spec:
+  containers: 
+    - name: nginx-pod-app
+      image: nginx
